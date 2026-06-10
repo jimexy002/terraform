@@ -1,0 +1,28 @@
+aws_region  = "us-east-1"
+name_prefix = "day9-prod"
+
+default_tags = {
+  Environment = "prod"
+  ManagedBy   = "terraform"
+  Owner       = "platform"
+  Project     = "day-9-rds-cache"
+}
+
+vpc_cidr          = "10.40.0.0/16"
+data_subnet_cidrs = ["10.40.20.0/24", "10.40.21.0/24"]
+
+db_name                         = "appdb"
+db_username                     = "adminuser"
+db_instance_class               = "db.t4g.medium"
+db_read_replica_instance_class  = "db.t4g.medium"
+db_allocated_storage            = 100
+db_max_allocated_storage        = 500
+db_backup_retention_period      = 14
+deletion_protection             = true
+skip_final_snapshot             = false
+
+cache_node_type  = "cache.t4g.small"
+cache_node_count = 3
+
+# Replace before running terraform apply. Do not commit real secrets.
+cache_auth_token = "replace-with-a-strong-token-32-chars"
